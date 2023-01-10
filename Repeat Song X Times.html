@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<style>
+    body {
+        background-color: black;
+    }
+</style>
+<audio id="loop-limited" controls>
+    <source src="demo with harmony.wav" type="audio/wav">
+</audio>
+<input id="times" type="number">
+<button onclick="playSound()">Play</button>
+<script>
+// Audio Loop Limit
+var loopLimit = document.getElementById("times").value;
+var loopCounter = 1;
+document.getElementById('loop-limited').addEventListener('ended', function(){
+    if (loopCounter < loopLimit){
+        console.log(loopLimit + " " + loopCounter)
+        this.currentTime = 0;
+        this.play();
+        loopCounter++;
+    }
+}, false);
+function playSound(){
+    loopLimit = document.getElementById("times").value;
+    loopCounter = 1;
+    console.log(loopLimit + " " + loopCounter)
+    document.getElementById('loop-limited').play()
+}
+</script>
